@@ -1,0 +1,23 @@
+<section class="cont">
+  <figure class="figure">
+    <img src="assets/logo-dogApi-removebg-preview.png" width="120">
+  </figure>
+
+  <main class="align-main-content">
+    <form class="example-form" *ngIf="formatedBreeds.length > 0">
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Breed</mat-label>
+        <input matAutocompletePosition="below" type="text" matInput [formControl]="myControl" [matAutocomplete]="auto">
+        <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+          <mat-option *ngFor="let option of filteredOptions | async" [value]="option" (click)="this.getImageDog(option.name)">
+            {{option.name}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </form>
+
+    <figure *ngIf="imageDog != ''">
+      <img src="{{imageDog}}" width="120">
+    </figure>
+  </main>
+</section>
